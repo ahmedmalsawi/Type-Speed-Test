@@ -32,86 +32,86 @@
 //=====================================================================================
 // English Words list
 const easyWords = [
-    "Code",
-    "Town",
-    "Task",
-    "Test",
-    "Rust",
-    "Scala",
-    "Hello",
-    "Funny",
-    "Roles",
-    "Python",
-  ],
-  normalWords = [
-    "Coding",
-    "Runner",
-    "Github",
-    "Twitter",
-    "Testing",
-    "Styling",
-    "Cascade",
-    "Country",
-    "Working",
-    "Youtube",
-  ],
-  hardWords = [
-    "Playing",
-    "Linkedin",
-    "Leetcode",
-    "Internet",
-    "Paradigm",
-    "Javascript",
-    "Programming",
-    "Destructuring",
-    "Documentation",
-    "Dependencies",
-  ];
+		"Code",
+		"Town",
+		"Task",
+		"Test",
+		"Rust",
+		"Scala",
+		"Hello",
+		"Funny",
+		"Roles",
+		"Python",
+	],
+	normalWords = [
+		"Coding",
+		"Runner",
+		"Github",
+		"Twitter",
+		"Testing",
+		"Styling",
+		"Cascade",
+		"Country",
+		"Working",
+		"Youtube",
+	],
+	hardWords = [
+		"Playing",
+		"Linkedin",
+		"Leetcode",
+		"Internet",
+		"Paradigm",
+		"Javascript",
+		"Programming",
+		"Destructuring",
+		"Documentation",
+		"Dependencies",
+	];
 let words = [];
 
 //=====================================================================================
 // Arabic Words list
 let arEasyWords = [
-  "حب",
-  "علم",
-  "جزاء",
-  "مودة",
-  "رقي",
-  "غناء",
-  "كتاب",
-  "مسمار",
-  "دراق",
-  "مدحت",
+	"حب",
+	"علم",
+	"جزاء",
+	"مودة",
+	"رقي",
+	"غناء",
+	"كتاب",
+	"مسمار",
+	"دراق",
+	"مدحت",
 ];
 let arNormalWords = [
-  "مسلسل",
-  "استجمام",
-  "استمالة",
-  "اجنبي",
-  "زيتون",
-  "اغصان",
-  "اعلام",
-  "مناورات",
-  "كلمات",
-  "السيد",
+	"مسلسل",
+	"استجمام",
+	"استمالة",
+	"اجنبي",
+	"زيتون",
+	"اغصان",
+	"اعلام",
+	"مناورات",
+	"كلمات",
+	"السيد",
 ];
 let arHardWords = [
-  "استدلالات",
-  "مناقشات",
-  "أحمد",
-  "أمناء",
-  "جريء",
-  "أشرف",
-  "استكمال",
-  "معاملات",
-  "مضاربة",
-  "استثناء",
+	"استدلالات",
+	"مناقشات",
+	"أحمد",
+	"أمناء",
+	"جريء",
+	"أشرف",
+	"استكمال",
+	"معاملات",
+	"مضاربة",
+	"استثناء",
 ];
 
 let lang = "Ar";
 // Setting Levels
 const lvls = {
-  Turtle: 7,
+	Turtle: 7,
 	Easy: 5,
 	Normal: 3,
 	Hard: 2,
@@ -149,45 +149,44 @@ let historyDiv = document.querySelector(".history");
 let goodPicture = `<img class="img-good"src="good.gif" alt="" />`;
 let badPicture = `<img class="img-bad" src="bad1.gif" alt="" /> <img class="img-bad" src="bad2.jpg" alt="" />`;
 
-
 let username;
 let userLocal;
 //=====================================================================================
 // Disable Paste Event // عشان العالم الصايعة
 input.onpaste = function () {
-  return false;
+	return false;
 };
 //=====================================================================================
 //get username from localStorage
-username = window.localStorage.getItem('username');
+username = window.localStorage.getItem("username");
 function userGet() {
-  usernameGet = document.getElementById("username").value;
-  if(usernameGet !== ""){
-    userLocal = window.localStorage.setItem("username", usernameGet);
-    username = window.localStorage.username;
-  }else{
-    username = window.localStorage.username;
-  }
-  // userArr = [];
+	usernameGet = document.getElementById("username").value;
+	if (usernameGet !== "") {
+		userLocal = window.localStorage.setItem("username", usernameGet);
+		username = window.localStorage.username;
+	} else {
+		username = window.localStorage.username;
+	}
+	// userArr = [];
 }
 startButton.onclick = function () {
-  username = window.localStorage.getItem("username");
-  langGet = document.getElementById("lang").value;
-  lang = langGet;
-  reportLevel();
+	username = window.localStorage.getItem("username");
+	langGet = document.getElementById("lang").value;
+	lang = langGet;
+	reportLevel();
 	lvlStart.remove();
-  input.focus();
-  var timeleft = 3;
-  var firstStart = setInterval(function () {
-    if (timeleft <= 0) {
-      clearInterval(firstStart);
-      theWord.innerHTML = "Start";
-      genWords();
-    } else {
-      theWord.innerHTML = timeleft + " seconds begin";
-    }
-    timeleft -= 1;
-  }, 1000);
+	input.focus();
+	var timeleft = 3;
+	var firstStart = setInterval(function () {
+		if (timeleft <= 0) {
+			clearInterval(firstStart);
+			theWord.innerHTML = "Start";
+			genWords();
+		} else {
+			theWord.innerHTML = timeleft + " seconds begin";
+		}
+		timeleft -= 1;
+	}, 1000);
 };
 //=====================================================================================
 // Setting Level Name + Seconds + Score
@@ -197,189 +196,186 @@ timeLeftSpan.innerHTML = defaultLevelSeconds;
 scoreTotal.innerHTML = words.length; // Total words count dynamic
 
 function reportLevel() {
-  defaultLevelName = levelGet[levelGet.selectedIndex].value;
-  defaultLevelSeconds = lvls[defaultLevelName];
-  console.log(`current level is: ${defaultLevelName}`);
-  console.log(`current level Seconds are: ${defaultLevelSeconds}`);
-  
-  //=====================================================================================
-  // Setting Level Name + Seconds + Score
-  lvlNameSpan.innerHTML = defaultLevelName;
-  secondsSpan.innerHTML = defaultLevelSeconds;
-  timeLeftSpan.innerHTML = defaultLevelSeconds;
-  //=====================================================================================
-// change word group and count depending on level
-if (defaultLevelName == "Turtle" && lang == "En") {
-	words = [];
-	words = easyWords;
-} else if (defaultLevelName == "Turtle" && lang == "Ar") {
-  words = [];
-	words = arEasyWords;
-} else if (defaultLevelName == "Easy" && lang == "Ar") {
-  words = [];
-	words = arEasyWords;
-} else if (defaultLevelName == "Easy" && lang == "En") {
-  words = [];
-	words = easyWords;
-} else if (defaultLevelName == "Normal" && lang == "Ar") {
-  words = [];
-	words = words.concat(arEasyWords, arNormalWords);
-} else if (defaultLevelName == "Normal" && lang == "En") {
-  words = [];
-	words = words.concat(easyWords, normalWords);
-} else if (defaultLevelName == "Hard" && lang == "Ar") {
-  words = [];
-	words = words.concat(arEasyWords, arNormalWords, arHardWords);
-} else if (defaultLevelName == "Hard" && lang == "En") {
-  words = [];
-	words = words.concat(easyWords, normalWords, hardWords);
-} else {
-  words = ["SomethingWrong"];
-}
-scoreTotal.innerHTML = words.length;
-// Total words count dynamic
+	defaultLevelName = levelGet[levelGet.selectedIndex].value;
+	defaultLevelSeconds = lvls[defaultLevelName];
+	console.log(`current level is: ${defaultLevelName}`);
+	console.log(`current level Seconds are: ${defaultLevelSeconds}`);
+
+	//=====================================================================================
+	// Setting Level Name + Seconds + Score
+	lvlNameSpan.innerHTML = defaultLevelName;
+	secondsSpan.innerHTML = defaultLevelSeconds;
+	timeLeftSpan.innerHTML = defaultLevelSeconds;
+	//=====================================================================================
+	// change word group and count depending on level
+	if (defaultLevelName == "Turtle" && lang == "En") {
+		words = [];
+		words = easyWords;
+	} else if (defaultLevelName == "Turtle" && lang == "Ar") {
+		words = [];
+		words = arEasyWords;
+	} else if (defaultLevelName == "Easy" && lang == "Ar") {
+		words = [];
+		words = arEasyWords;
+	} else if (defaultLevelName == "Easy" && lang == "En") {
+		words = [];
+		words = easyWords;
+	} else if (defaultLevelName == "Normal" && lang == "Ar") {
+		words = [];
+		words = words.concat(arEasyWords, arNormalWords);
+	} else if (defaultLevelName == "Normal" && lang == "En") {
+		words = [];
+		words = words.concat(easyWords, normalWords);
+	} else if (defaultLevelName == "Hard" && lang == "Ar") {
+		words = [];
+		words = words.concat(arEasyWords, arNormalWords, arHardWords);
+	} else if (defaultLevelName == "Hard" && lang == "En") {
+		words = [];
+		words = words.concat(easyWords, normalWords, hardWords);
+	} else {
+		words = ["SomethingWrong"];
+	}
+	scoreTotal.innerHTML = words.length;
+	// Total words count dynamic
 }
 
 //generate Word function
 function genWords() {
-  //get random words from array
-  let randomWord = words[Math.floor(Math.random() * words.length)];
-  console.log(randomWord);
-  theWord.innerHTML = randomWord;
-  // words.pop(randomWord);
-  // console.log(words.length);
-  let wordIndex = words.indexOf(randomWord);
-  words.splice(wordIndex, 1);
-  upcomingWords.innerHTML = "";
-  //generateWords
-  for (let i = 0; i < words.length; i++) {
-    //create div element
-    let div = document.createElement("div");
-    let txt = document.createTextNode(words[i]);
-    div.appendChild(txt);
-    upcomingWords.appendChild(div);
-  }
-  // Start Play Function
-  startPlay();
+	//get random words from array
+	let randomWord = words[Math.floor(Math.random() * words.length)];
+	console.log(randomWord);
+	theWord.innerHTML = randomWord;
+	// words.pop(randomWord);
+	// console.log(words.length);
+	let wordIndex = words.indexOf(randomWord);
+	words.splice(wordIndex, 1);
+	upcomingWords.innerHTML = "";
+	//generateWords
+	for (let i = 0; i < words.length; i++) {
+		//create div element
+		let div = document.createElement("div");
+		let txt = document.createTextNode(words[i]);
+		div.appendChild(txt);
+		upcomingWords.appendChild(div);
+	}
+	// Start Play Function
+	startPlay();
 }
 // Storing Score by date to Local Storage
 let storeTheScore;
 var today = new Date();
-var date =today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-var time ;
-var dateTime;	
+var date =
+	today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+var time;
+var dateTime;
 let recScore;
 
-let userArr=[];
+let userArr = [];
 if (window.localStorage.getItem(username) == null) {
 	userArr = [];
 } else {
 	userArr = window.localStorage.getItem(username).split(",");
 }
 
-let historyFill = `<span> Your previous Scores are: </span>${	document.querySelector(".Normal").innerHTML} ${userArr} <br/>${username} `;
-
-
-for (let i = 0; i < userArr.length; i++) {
-  console.log(userArr[i]);
-};
-
-
-
-
-
-function saveScore(){
-if (window.localStorage.getItem(username) == null) {
-	userArr = [];
-  }else {
-	userArr = window.localStorage.getItem(username).split(",");
+function saveScore() {
+	if (window.localStorage.getItem(username) == null) {
+		userArr = [];
+	} else {
+		userArr = window.localStorage.getItem(username).split(",");
+	}
+	time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	dateTime = date + " " + time;
+	userArr[userArr.length++] = [dateTime, scoreGot.innerHTML];
+	recScore = window.localStorage.setItem(username, userArr);
+	console.log(localStorage.getItem(username));
 }
-  time =
-	today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-dateTime = date + " " + time;
-  userArr[userArr.length++] = [dateTime, scoreGot.innerHTML];
-recScore = window.localStorage.setItem(username,userArr);
-  console.log(localStorage.getItem(username));
-}
-
 
 console.log(document.querySelector(".Normal").innerHTML);
 
-
-
-
 function clearResults() {
-  window.localStorage.clear();
+	window.localStorage.clear();
 }
 
+
+//previous Scores
+let historyFill;
+let historyFillFun = function ()
+{
+  for (let i = 1; i < userArr.length; i+=2)
+  { historyFill += `<span>${username}, You Scored ${userArr[i]} before. </span><br/>`;}
+};
+
+// function Start play
 function startPlay() {
-  let spanText;
-  let spanTextArGood = document.createTextNode(`
+	let spanText;
+	let spanTextArGood = document.createTextNode(`
   انت معلم يا
   ${username}
-  </br>
+  
   وبرنس البرانيس كلهم 
   `);
-  let spanTextEnGood = document.createTextNode(`${username}...You Rock !!`);
-  let spanTextEnBad  = document.createTextNode(
-    `Sorry, ${username}... Game Over`
-    );
-    timeLeftSpan.innerHTML = defaultLevelSeconds;
-    let spanTextArBad  = document.createTextNode(`
+	let spanTextEnGood = document.createTextNode(`${username}...You Rock !!`);
+	let spanTextEnBad = document.createTextNode(
+		`Sorry, ${username}... Game Over`
+	);
+	timeLeftSpan.innerHTML = defaultLevelSeconds;
+	let spanTextArBad = document.createTextNode(`
   ${username}
-             معلش يا ابو الصحاب</br>
+  
+             معلش يا ابو الصحاب 
           حاول تاني وخليك سريع
             `);
-  let start = setInterval(() => {
-    timeLeftSpan.innerHTML--;
-    if (timeLeftSpan.innerHTML === "0") {
-      clearInterval(start);
-      //compare words
-      if (
-        theWord.innerHTML.toLocaleLowerCase() ===
-        input.value.toLocaleLowerCase()
-      ) {
-      
-        console.log("done");
-        input.value = "";
-        scoreGot.innerHTML++;
-        if (words.length > 0) {
-          genWords();
-        } else {
-          saveScore();
-          let span = document.createElement("span");
-          span.className = "good";
-          picturesDiv.innerHTML = goodPicture;
-          historyDiv.innerHTML = historyFill;
-          
-          if(lang == "Ar"){
-            spanText = spanTextArGood;
-          }else{
-            spanText = spanTextEnGood;
-          }
-          span.appendChild(spanText);
-          finishMessage.appendChild(span);
-          upcomingWords.remove();
-          input.remove();
-          theWord.remove();
-        }
-      } else {
-        let span = document.createElement("span");
-        span.className = "bad";
-                  if (lang == "Ar") {
-                    spanText = spanTextArBad;
-									} else {
-                    spanText = spanTextEnBad;
-									}
-                  picturesDiv.innerHTML = badPicture;
-                  historyDiv.innerHTML = historyFill;
-                  span.appendChild(spanText);
-                  finishMessage.appendChild(span);
-                  upcomingWords.remove();
-                  input.remove();
-                  theWord.remove();
-                  saveScore();
-      }
-    }
-  }, 1000);
+	let start = setInterval(() => {
+		timeLeftSpan.innerHTML--;
+		if (timeLeftSpan.innerHTML === "0") {
+			clearInterval(start);
+			//compare words
+			if (
+				theWord.innerHTML.toLocaleLowerCase() ===
+				input.value.toLocaleLowerCase()
+			) {
+				console.log("done");
+				input.value = "";
+				scoreGot.innerHTML++;
+				if (words.length > 0) {
+					genWords();
+				} else {
+					saveScore();
+					let span = document.createElement("span");
+					span.className = "good";
+					picturesDiv.innerHTML = goodPicture;
+          historyFillFun();
+					historyDiv.innerHTML = historyFill;
+
+					if (lang == "Ar") {
+						spanText = spanTextArGood;
+					} else {
+						spanText = spanTextEnGood;
+					}
+					span.appendChild(spanText);
+					finishMessage.appendChild(span);
+					upcomingWords.remove();
+					input.remove();
+					theWord.remove();
+				}
+			} else {
+				let span = document.createElement("span");
+				span.className = "bad";
+				if (lang == "Ar") {
+					spanText = spanTextArBad;
+				} else {
+					spanText = spanTextEnBad;
+				}
+				picturesDiv.innerHTML = badPicture;
+				historyFillFun();
+				historyDiv.innerHTML = historyFill;
+				span.appendChild(spanText);
+				finishMessage.appendChild(span);
+				upcomingWords.remove();
+				input.remove();
+				theWord.remove();
+				saveScore();
+			}
+		}
+	}, 1000);
 }
