@@ -147,7 +147,7 @@ let finishMessage = document.querySelector(".finish");
 let picturesDiv = document.querySelector(".pictures");
 let historyDiv = document.querySelector(".history");
 let goodPicture = `<img class="img-good"src="good.gif" alt="" />`;
-let badPicture = `<img class="img-bad" src="bad1.gif" alt="" /> <img class="img-bad" src="bad2.jpg" alt="" />`;
+let badPicture = `<img class="img-bad" src="bad1.jpg" alt="" /> <img class="img-bad" src="bad2.jpg" alt="" />`;
 
 let username;
 let userLocal;
