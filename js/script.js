@@ -164,7 +164,12 @@ function userGet() {
 	if (usernameGet !== "") {
 		userLocal = window.localStorage.setItem("username", usernameGet);
 		username = window.localStorage.username;
-	} else {
+	} else if (usernameGet == "clearHistory"){
+	window.localStorage.clear();
+		userLocal = window.localStorage.setItem("username", usernameGet);
+		username = window.localStorage.username;
+		
+		} else {
 		username = window.localStorage.username;
 	}
 	// userArr = [];
@@ -292,9 +297,9 @@ function saveScore() {
 
 console.log(document.querySelector(".Normal").innerHTML);
 
-function clearResults() {
-	window.localStorage.clear();
-}
+// function clearResults() {
+// 	window.localStorage.clear();
+// }
 
 
 //previous Scores
