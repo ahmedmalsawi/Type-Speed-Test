@@ -166,8 +166,9 @@ function userGet() {
 		username = window.localStorage.username;
 	} else if (usernameGet == "clearHistory"){
 	window.localStorage.clear();
-		userLocal = window.localStorage.setItem("username", usernameGet);
+		// userLocal = window.localStorage.setItem("username", usernameGet);
 		username = window.localStorage.username;
+    console.log("Cleared");
 		
 		} else {
 		username = window.localStorage.username;
